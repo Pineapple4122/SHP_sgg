@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # sph
 
 ## Project setup
@@ -22,3 +23,7 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+=======
+# SHP_sgg
+尚品汇项目
+>>>>>>> remotes/origin/main
