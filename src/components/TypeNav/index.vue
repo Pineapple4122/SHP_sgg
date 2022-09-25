@@ -100,7 +100,7 @@ export default {
                   }
                }
                .item-list {
-                  // display: none;
+                  display: none;
                   position: absolute;
                   width: 734px;
                   min-height: 460px;
