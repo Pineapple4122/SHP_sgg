@@ -4,6 +4,8 @@
     <ListContainer></ListContainer>
     <Recommend></Recommend>
     <Rank></Rank>
+    <Like></Like>
+    <Floor></Floor>
   </div>
 </template>
 
@@ -11,6 +13,8 @@
 import ListContainer from './ListContainer'
 import Recommend from './Recommend'
 import Rank from './Rank'
+import Like from './Like'
+import Floor from './Floor'
 
 export default {
    name: 'Home',
@@ -18,6 +22,8 @@ export default {
     ListContainer,
     Recommend,
     Rank,
+    Like,
+    Floor,
    },
 }
 </script>
