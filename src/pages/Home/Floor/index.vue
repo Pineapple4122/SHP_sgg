@@ -1,11 +1,11 @@
 <template>
   <div class="floor">
       <div class="py-container">
-         <div class="title">
+         <div class="title clearfix">
             <h3 class="fl">家用电器</h3>
             <div class="fr">
                <ul class="nav-tabs">
-                  <li><a href="#" class="active">热门</a></li>
+                  <li class="active"><a href="#">热门</a></li>
                   <li><a href="#">热门</a></li>
                   <li><a href="#">热门</a></li>
                   <li><a href="#">热门</a></li>
@@ -13,6 +13,47 @@
                   <li><a href="#">热门</a></li>
                   <li><a href="#">热门</a></li>
                </ul>
+            </div>
+         </div>
+         <div class="tab-content">
+            <div class="tab-pane">
+               <div class="floor-1">
+                  <div class="blockgary">
+                     <ul class="jd-list">
+                        <li>节能补贴</li>
+                        <li>节能补贴</li>
+                        <li>节能补贴</li>
+                        <li>节能补贴</li>
+                        <li>节能补贴</li>
+                        <li>节能补贴</li>
+                     </ul>
+                     <img src="./images/floor-1-1.png">
+                  </div>
+                  <div class="floorBanner">
+                     <Carousel></Carousel>
+                  </div>
+                  <div class="split">
+                     <span class="floor-x-line"></span>
+                     <div class="floor-conver-pit">
+                        <img src="./images/floor-1-2.png">
+                     </div>
+                     <div class="floor-conver-pit">
+                        <img src="./images/floor-1-3.png">
+                     </div>
+                  </div>
+                  <div class="split center">
+                     <img src="./images/floor-1-4.png">
+                  </div>
+                  <div class="split">
+                     <span class="floor-x-line"></span>
+                     <div class="floor-conver-pit">
+                        <img src="./images/floor-1-5.png">
+                     </div>
+                     <div class="floor-conver-pit">
+                        <img src="./images/floor-1-6.png">
+                     </div>
+                  </div>
+               </div>
             </div>
          </div>
       </div>
@@ -26,5 +67,116 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.floor {
+   margin-top: 15px;
+   .py-container {
+      width: 1200px;
+      margin: 0 auto; 
+      .title {
+         .fl {
+            float: left;
+            color: #c81523;
+            font-size: 20px;
+            font-weight: 700;
+            margin: 9px 0;
+            line-height: 30px;
+         }
+         .fr {
+            float: right;
+            .nav-tabs {
+               margin: 10px 0 0;
+               display: inline-block;
+               li {
+                  float: left;
+                  line-height: 18px;
+                  a {
+                     font-weight: 400;
+                     background-color: #fff;
+                     padding-top: 1px;
+                     &::after {
+                        content: '|';
+                        padding: 0 10px;
+                     }
+                  }
+                  &:nth-child(7) {
+                     a {
+                        &::after {
+                           content: '';
+                        }
+                     }
+                  }
+                  &.active {
+                     a {
+                        color: #e1251b;
+                     }
+                  }
+               }
+            }
+         }
+      }
 
+      .tab-content {
+         border-top: 2px solid #c81623;
+         border-bottom: 1px solid #e4e4e4;
+         .tab-pane {
+            .floor-1 {
+               height: 360px;
+               display: flex;
+               .blockgary {
+                  width: 210px;
+                  height: 100%;
+                  background: #f7f7f7;
+                  .jd-list {
+                     padding: 15px 0;
+                     overflow: hidden;
+                     li {
+                        list-style-type: none;
+                        float: left;
+                        width: 40%;
+                        text-align: center;
+                        margin: 0 10px;
+                        line-height: 26px;
+                        border-bottom: 1px solid #e4e4e4;
+                     }
+                  }
+                  img {
+                     width: 100%;
+                  }
+               }
+               .floorBanner {
+                  width: 330px;
+                  height: 100%;
+               }
+               .split {
+                  width: 220px;
+                  height: 100%;
+                  position: relative;
+                  .floor-x-line {
+                     position: absolute;
+                     width: 220px;
+                     height: 1px;
+                     top: 180px;
+                     background: #e4e4e4;
+                  }
+                  .floor-conver-pit {
+                     width: 100%;
+                     height: 50%;
+                     img {
+                        width: 100%;
+                        height: 100%;
+                        transition: all 400ms;
+                        &:hover {
+                           opacity: 0.8;
+                        }
+                     }
+                  } 
+               }
+               .center {
+                  border: 1px solid #e4e4e4;
+               }
+            }
+         }
+      }
+   }
+}
 </style>

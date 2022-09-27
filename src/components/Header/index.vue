@@ -6,7 +6,7 @@
                <p>尚品汇欢迎您！</p>
                <p>
                   <span>请</span>
-                  <a href="/login">登录</a>
+                  <router-link to="/login">登录</router-link>
                   <a href="/register" class="register">免费注册</a>
                </p>
             </div>
