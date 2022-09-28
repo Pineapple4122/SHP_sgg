@@ -7,7 +7,7 @@
                <p>
                   <span>请</span>
                   <router-link to="/login">登录</router-link>
-                  <a href="/register" class="register">免费注册</a>
+                  <router-link to="/register" class="register">免费注册</router-link>
                </p>
             </div>
             <div class="typeList">
