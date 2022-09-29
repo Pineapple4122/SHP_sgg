@@ -1,7 +1,32 @@
 <template>
   <div class="type-nav">
       <div class="container">
-         <h2 class="all">全部商品分类</h2>
+         <div @mouseleave="leaveIndex">
+            <h2 class="all">全部商品分类</h2>
+            <div class="sort">
+               <div class="all-sort-list2">
+                  <div class="item" v-for="(c1,index) in categoryList" :key="c1.categoryId" :class="{cur:currentIndex==index}">
+                     <h3 @mouseenter="changeIndex(index)">
+                        <a>{{c1.categoryName}}</a>
+                     </h3>
+                     <div class="item-list clearfix" :style="{display:currentIndex==index?'block':'none'}">
+                        <div class="subitem" v-for="(c2,index) in c1.categoryChild" :key="c2.categotyId">
+                           <dl class="fore">
+                              <dt>
+                                 <a>{{c2.categoryName}}</a>
+                              </dt>
+                              <dd>
+                                 <em v-for="(c3,index) in c2.categoryChild" :key="c3.categotyId">
+                                    <a>{{c3.categoryName}}</a>
+                                 </em>
+                              </dd>
+                           </dl>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
          <nav class="nav">
             <a href="#">服装城</a>
             <a href="#">服装城</a>
@@ -12,42 +37,37 @@
             <a href="#">服装城</a>
             <a href="#">服装城</a>
          </nav>
-         <div class="sort">
-            <div class="all-sort-list2">
-               <div class="item">
-                  <h3>
-                     <a href="#">图书、音像、电子书刊</a>
-                  </h3>
-                  <div class="item-list clearfix">
-                     <div class="subitem">
-                        <dl class="fore">
-                           <dt>
-                              <a href="#">电子书</a>
-                           </dt>
-                           <dd>
-                              <em>
-                                 <a href="#">婚恋/两性</a>
-                              </em>
-                              <em>
-                                 <a href="#">文学</a>
-                              </em>
-                              <em>
-                                 <a href="#">经管</a>
-                              </em>
-                           </dd>
-                        </dl>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
       </div>
   </div>
 </template>
 
 <script>
+import {mapState} from 'vuex'
+import throttle from 'lodash/throttle'
+
 export default {
    name: 'TypeNav',
+   data() {
+      return {
+         currentIndex: -1,
+      }
+   },
+   mounted() {
+      this.$store.dispatch('categoryList')
+   },
+   computed: {
+      ...mapState({
+         categoryList: (state) => state.home.categoryList
+      }),
+   },
+   methods: {
+      changeIndex: throttle(function (index) {
+         this.currentIndex = index
+      },50),
+      leaveIndex() {
+         this.currentIndex = -1
+      }
+   }
 }
 </script>
 
@@ -100,7 +120,7 @@ export default {
                   }
                }
                .item-list {
-                  display: none;
+                  // display: none;
                   position: absolute;
                   width: 734px;
                   min-height: 460px;
@@ -146,6 +166,9 @@ export default {
                      }
                   }
                }
+            }
+            .cur {
+               background-color: skyblue;
             }
          }
       }
