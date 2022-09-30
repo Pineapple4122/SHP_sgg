@@ -32,7 +32,8 @@ export default new VueRouter({
          component: ()=>import('@/pages/Login'),
          meta: {show: false}
       },
-      {
+      {  
+         name: 'search',
          path: '/search',
          component: ()=>import('@/pages/Search'),
          meta: {show: true}
