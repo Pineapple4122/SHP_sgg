@@ -3,29 +3,31 @@
       <div class="container">
          <div @mouseleave="leaveIndex" @mouseenter="enterShow">
             <h2 class="all">全部商品分类</h2>
-            <div class="sort" v-show="show">
-               <div class="all-sort-list2" @click="goSearch">
-                  <div class="item" v-for="(c1,index) in categoryList" :key="c1.categoryId" :class="{cur:currentIndex==index}">
-                     <h3 @mouseenter="changeIndex(index)">
-                        <a :data-categoryName='c1.categoryName' :data-category1Id='c1.categoryId'>{{c1.categoryName}}</a>
-                     </h3>
-                     <div class="item-list clearfix" :style="{display:currentIndex==index?'block':'none'}">
-                        <div class="subitem" v-for="(c2,index) in c1.categoryChild" :key="c2.categotyId">
-                           <dl class="fore">
-                              <dt>
-                                 <a :data-categoryName='c2.categoryName' :data-category2Id='c2.categoryId'>{{c2.categoryName}}</a>
-                              </dt>
-                              <dd>
-                                 <em v-for="(c3,index) in c2.categoryChild" :key="c3.categotyId">
-                                    <a :data-categoryName='c3.categoryName' :data-category2Id='c3.categoryId'>{{c3.categoryName}}</a>
-                                 </em>
-                              </dd>
-                           </dl>
+            <transition name="sort">
+               <div class="sort" v-show="show">
+                  <div class="all-sort-list2" @click="goSearch">
+                     <div class="item" v-for="(c1,index) in categoryList" :key="c1.categoryId" :class="{cur:currentIndex==index}">
+                        <h3 @mouseenter="changeIndex(index)">
+                           <a :data-categoryName='c1.categoryName' :data-category1Id='c1.categoryId'>{{c1.categoryName}}</a>
+                        </h3>
+                        <div class="item-list clearfix" :style="{display:currentIndex==index?'block':'none'}">
+                           <div class="subitem" v-for="(c2,index) in c1.categoryChild" :key="c2.categotyId">
+                              <dl class="fore">
+                                 <dt>
+                                    <a :data-categoryName='c2.categoryName' :data-category2Id='c2.categoryId'>{{c2.categoryName}}</a>
+                                 </dt>
+                                 <dd>
+                                    <em v-for="(c3,index) in c2.categoryChild" :key="c3.categotyId">
+                                       <a :data-categoryName='c3.categoryName' :data-category2Id='c3.categoryId'>{{c3.categoryName}}</a>
+                                    </em>
+                                 </dd>
+                              </dl>
+                           </div>
                         </div>
                      </div>
                   </div>
                </div>
-            </div>
+            </transition>
          </div>
          <nav class="nav">
             <a href="#">服装城</a>
@@ -54,7 +56,7 @@ export default {
       }
    },
    mounted() {
-      this.$store.dispatch('categoryList')
+      // this.$store.dispatch('categoryList')
       if(this.$route.path != '/home') {
          this.show = false
       }
@@ -93,8 +95,11 @@ export default {
             } else {
                query.category3Id = category3id
             }
-            location.query = query
-            this.$router.push(location)
+            if(this.$route.params) {
+               location.params = this.$route.params
+               location.query = query
+               this.$router.push(location)
+            }
          }
       }
    }
@@ -201,6 +206,15 @@ export default {
                background-color: skyblue;
             }
          }
+      }
+      .sort-enter {
+         height: 0;
+      }
+      .sort-enter-to {
+         height: 461px;
+      }
+      .sort-enter-active {
+         transition: all .5s linear;
       }
    }
 }

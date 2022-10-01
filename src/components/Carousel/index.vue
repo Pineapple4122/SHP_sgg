@@ -1,17 +1,8 @@
 <template>
-  <div class="swiper-container">
+  <div class="swiper-container" ref="cur">
       <div class="swiper-wrapper">
-         <div class="swiper-slide">
-            <img src="../../../public/images/banner1.jpg">
-         </div>
-         <div class="swiper-slide">
-            <img src="../../../public/images/banner2.jpg">
-         </div>
-         <div class="swiper-slide">
-            <img src="../../../public/images/banner3.jpg">
-         </div>
-         <div class="swiper-slide">
-            <img src="../../../public/images/banner4.jpg">
+         <div class="swiper-slide" v-for="(carousel,index) in list" :key="carousel.id">
+            <img :src="carousel.imgUrl">
          </div>
       </div>
       <div class="swiper-button-next"></div>
@@ -25,20 +16,37 @@ import Swiper from 'swiper'
 
 export default {
    name: 'Carousel',
-   mounted() {
-      new Swiper(".swiper-container", {
-         loop: true,
-         autoplay: true,
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-      })
+   data() {
+      return {
+         
+      }
    },
+   props: ['list'],
+   computed: {
+   },
+   mounted() {
+
+   },
+   watch: {
+      list: {
+         handler() {
+            this.$nextTick(() => {
+               var mySwiper = new Swiper(this.$refs.cur, {
+                  loop: true,
+                  autoplay: true,
+                  navigation: {
+                     nextEl: ".swiper-button-next",
+                     prevEl: ".swiper-button-prev",
+                  },
+                  pagination: {
+                     el: ".swiper-pagination",
+                     clickable: true,
+                  },
+               })
+            })
+         }
+      }
+   }
 }
 </script>
 

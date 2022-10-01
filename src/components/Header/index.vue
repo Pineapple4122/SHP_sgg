@@ -30,8 +30,8 @@
          </h1>
          <div class="searchArea">
             <form action="#" class="searchForm">
-               <input type="text">
-               <button type="button">搜索</button>
+               <input type="text" v-model="keyword">
+               <button type="button" @click="goSearch">搜索</button>
             </form>
          </div>
       </div>
@@ -41,6 +41,20 @@
 <script>
 export default {
    name: 'Header',
+   data() {
+      return {
+         keyword: '',
+      }
+   },
+   methods: {
+      goSearch() {
+         if(this.$route.query) {
+            let location = {name:'search',params:{keyword:this.keyword||undefined}}
+            location.query = this.$route.query
+            this.$router.push(location)
+         }
+      }
+   }
 }
 </script>
 
