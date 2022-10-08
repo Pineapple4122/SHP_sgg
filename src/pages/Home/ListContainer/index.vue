@@ -2,7 +2,7 @@
   <div class="list-container">
       <div class="sortList clearfix">
          <div class="center">
-            <Carousel></Carousel>
+            <Carousel :list='bannerList'></Carousel>
          </div>
          <div class="right">
             <div class="news">

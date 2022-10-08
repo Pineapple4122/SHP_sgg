@@ -29,6 +29,7 @@ export default {
    },
    watch: {
       list: {
+         immediate: true,
          handler() {
             this.$nextTick(() => {
                var mySwiper = new Swiper(this.$refs.cur, {

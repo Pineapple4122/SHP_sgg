@@ -27,13 +27,13 @@ const actions = {
    },
    async getBannerList({commit}) {
       const result = await reqGetBannerList()
-      if(result,code === 200) {
+      if(result.code === 200) {
          commit('GETBANNERLIST',result.data)
       }
    },
    async floorList({commit}) {
       const result = await reqFloorList()
-      if(result,code === 200) {
+      if(result.code === 200) {
          commit('FLOORLIST',result.data)
       }
    },
